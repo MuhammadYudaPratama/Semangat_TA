@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="relative overflow-x-auto px-1 sm:rounded-lg">
-            <form action="{{ route('/dashboard/subkriteria/update') }}" method="POST">
+            <form action="{{ route('dashboard.subkriteria.update') }}" method="POST">
                 @csrf
                 <input type="hidden" name="sub_kriteria_id" value="{{ $subkriteria->sub_kriteria_id }}">
                 <div class="mb-6">

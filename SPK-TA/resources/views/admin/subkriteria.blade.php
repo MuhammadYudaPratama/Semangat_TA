@@ -10,9 +10,9 @@
             <div>
                 <h1 class="text-3xl text-slate-900 font-medium mb-1">Data Sub Kriteria</h1>
                 <h5 class="text-base text-slate-700 mb-5">Dashboard/Data Sub Kriteria</h5>
-                <a href="{{ route('/dashboard/subkriteria/add') }}">
+                <a href="{{ route('dashboard.subkriteria.add') }}">
                     <button
-                        class="bg-blue-600 text-white flex items-center px-3 py-2 rounded-lg hover:bg-blue-700">+ New Sub Kriteria</button>
+                        class="bg-blue-600 text-white flex items-center px-3 py-2 rounded-lg hover:bg-blue-700">+ Tambah Sub Kriteria</button>
                 </a>
             </div>
         </div>
@@ -69,7 +69,7 @@
                                             </svg>
                                             <span class="sr-only">Close modal</span>
                                         </button>
-                                        <form action="{{ route('/dashboard/subkriteria/delete') }}" method="POST"
+                                        <form action="{{ route('dashboard.subkriteria.delete') }}" method="POST"
                                             class="p-6 text-center">
                                             @csrf
                                             <input type="hidden" name="sub_kriteria_id" value="{{ $sk->sub_kriteria_id }}">

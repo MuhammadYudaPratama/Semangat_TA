@@ -90,7 +90,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="{{ route('/dashboard/jurusan') }}" class="{{ request()->is('dashboard/jurusan') ? 'bg-indigo-500 text-slate-50' : '' }} group flex items-center p-2 rounded-lg transition ease-in duration-150 hover:bg-indigo-300 hover:text-slate-50">
+                            <a href="{{ route('dashboard.jurusan') }}" class="{{ request()->is('dashboard/jurusan') ? 'bg-indigo-500 text-slate-50' : '' }} group flex items-center p-2 rounded-lg transition ease-in duration-150 hover:bg-indigo-300 hover:text-slate-50">
                                 <div class="w-10 h-10 p-1 flex items-center rounded-lg text-center text-gray-500 bg-slate-50 group-hover:text-slate-900">
                                     <i class="fa fa-book mx-auto group-hover:text-slate-800"></i>
                                 </div>
@@ -98,18 +98,18 @@
                             </a>
                         </li>
                         <li>
-                            <button type="button" class="{{ (request()->is('dashboard/kriteria') || request()->is('dashboard/subkriteria')) ? 'bg-indigo-500 text-slate-50' : '' }} group w-full flex items-center justify-between p-2 text-gray-900 rounded-lg transition ease-in duration-150 hover:bg-indigo-300 hover:text-slate-50" aria-controls="dropdown2" data-collapse-toggle="dropdown2">
+                            <button type="button" class="{{ (request()->is('dashboard.kriteria') || request()->is('dashboard/subkriteria')) ? 'bg-indigo-500 text-slate-50' : '' }} group w-full flex items-center justify-between p-2 text-gray-900 rounded-lg transition ease-in duration-150 hover:bg-indigo-300 hover:text-slate-50" aria-controls="dropdown2" data-collapse-toggle="dropdown2">
                                 <div class="flex items-center">
                                     <div class="w-10 h-10 p-1 flex items-center rounded-lg text-center text-gray-500 bg-slate-50 group-hover:text-slate-900">
                                         <i class="fa fa-list mx-auto group-hover:text-slate-800"></i>
                                     </div>
                                     <span class="ml-3">Kriteria</span>
                                 </div>
-                                <i class="fa fa-chevron-down ml-auto {{ (request()->is('dashboard/kriteria') || request()->is('dashboard/subkriteria')) ? 'text-slate-50' : 'text-gray-500' }} text-sm group-hover:text-slate-50"></i>
+                                <i class="fa fa-chevron-down ml-auto {{ (request()->is('dashboard.kriteria') || request()->is('dashboard/subkriteria')) ? 'text-slate-50' : 'text-gray-500' }} text-sm group-hover:text-slate-50"></i>
                             </button>
-                            <ul id="dropdown2" class="{{ (request()->is('dashboard/kriteria') || request()->is('dashboard/subkriteria')) ? '' : 'hidden' }} py-2 space-y-2 mt-1 rounded-lg bg-indigo-50 px-2">
+                            <ul id="dropdown2" class="{{ (request()->is('dashboard.kriteria') || request()->is('dashboard/subkriteria')) ? '' : 'hidden' }} py-2 space-y-2 mt-1 rounded-lg bg-indigo-50 px-2">
                                 <li>
-                                    <a href="{{route('/dashboard/kriteria') }}" class="flex items-center p-2 {{ (request()->is('dashboard/kriteria')) ? 'bg-indigo-500 text-slate-50' : 'text-slate-900' }} rounded-lg transition ease-in duration-150 hover:bg-indigo-300 hover:text-slate-50">
+                                    <a href="{{route('dashboard.kriteria') }}" class="flex items-center p-2 {{ (request()->is('dashboard/kriteria')) ? 'bg-indigo-500 text-slate-50' : 'text-slate-900' }} rounded-lg transition ease-in duration-150 hover:bg-indigo-300 hover:text-slate-50">
                                         <span class="flex-1 ml-3 whitespace-nowrap">Data Kriteria</span>
                                     </a>
                                 </li>

@@ -27,4 +27,10 @@ class Kriteria extends Model
         'nama_kriteria',
     ];
 
+    public function subKriteria()
+    {
+    return $this->hasMany(SubKriteria::class, 'kriteria_id');
+    }
+
+
 }

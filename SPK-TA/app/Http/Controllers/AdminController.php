@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imports\SiswaImport;
+use App\Imports\JurusanImport;
 use App\Models\Jurusan;
 use App\Models\Kelas;
 use App\Models\Keputusan;
@@ -284,6 +285,48 @@ class AdminController extends Controller
 
         return view('admin.add_jurusan');
     }
+
+    public function importJurusan(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+        $excel = \Excel::toArray(new JurusanImport, $request->file('file')->store('temp'));
+
+        if(!$excel) {
+            return back()->with('failed', 'Gagal! File tidak dapat diimport.');
+        }
+
+        $failedRows = 0;
+        $successRows = 0;
+        foreach ($excel as $data) {
+            foreach ($data as $row) {
+                try {
+                    Jurusan::create([
+                        'kode_jurusan' => $row[0],
+                        'nama_jurusan' => $row[1],
+                    ]);
+                    $successRows++;
+                } catch (\Exception $e) {
+                    $failedRows++;
+                    continue;
+                }
+            }
+        }
+
+        if ($failedRows > 0) {
+            if($successRows > 0) {
+                return redirect()->back()->with('warning', 'Warning! Beberapa Data Jurusan Gagal Diimport, Karena format tidak valid.');
+            }
+            else{
+                return back()->with('failed', 'Gagal! Data Jurusan Gagal Diimport, Pastikan file dan formatnya valid!');
+            }
+        }
+        else{
+            return redirect()->route('dashboard.jurusan')->with('success', 'Sukses! Data Jurusan Berhasil Diimport');
+        }
+    }
+
     public function insert_jurusan(Request $request)
     {
 
@@ -296,7 +339,7 @@ class AdminController extends Controller
 
         Jurusan::create($validatedData);
 
-        return redirect()->route('/dashboard/jurusan')->with('success', 'Sukses! Data jurusan Berhasil Disimpan');
+        return redirect()->route('dashboard.jurusan')->with('success', 'Sukses! Data jurusan Berhasil Disimpan');
     }
     public function delete_jurusan(Request $request)
     {
@@ -309,7 +352,7 @@ class AdminController extends Controller
 
         $jurusan->delete();
 
-        return redirect()->route('/dashboard/jurusan')->with('success', 'Sukses! Data jurusan Berhasil Dihapus');
+        return redirect()->route('dashboard.jurusan')->with('success', 'Sukses! Data jurusan Berhasil Dihapus');
     }
     public function edit_jurusan($id)
     {
@@ -334,7 +377,7 @@ class AdminController extends Controller
 
         $jurusan->update($validatedData);
 
-        return redirect()->route('/dashboard/jurusan')->with('success', 'Sukses! Data jurusan Berhasil Diupdate');
+        return redirect()->route('dashboard.jurusan')->with('success', 'Sukses! Data jurusan Berhasil Diupdate');
     }
 
     //////////////////////////////////////////////////////////////////////////////////////
@@ -356,19 +399,36 @@ class AdminController extends Controller
         return view('admin.add_kriteria');
     }
     public function insert_kriteria(Request $request)
-    {
+{
+    if (!session()->has('user')) return redirect('/');
 
-        if (!session()->has('user')) return redirect('/');
+    // Validasi input
+    $validatedData = $request->validate([
+        'nama_kriteria' => 'required',
+        'kode_kriteria' => 'required',
+        'sub_kriteria' => 'required|array',
+        'keterangan' => 'required|array',
+    ]);
 
-        $validatedData = $request->validate([
-            'kriteria_id' => 'required',
-            'nama_kriteria' => 'required',
+    // Simpan Kriteria
+    $kriteria = Kriteria::create([
+        'nama_kriteria' => $request->nama_kriteria,
+        'kode_kriteria' => $request->kode_kriteria,
+    ]);
+
+    // Simpan Sub Kriteria
+    foreach ($request->sub_kriteria as $index => $sub) {
+        SubKriteria::create([
+            'kriteria_id' => $kriteria->id,
+            'sub_kriteria' => $sub,
+            'keterangan' => $request->keterangan[$index],
+            'bobot' => $request->bobot[$index],
         ]);
-
-        Kriteria::create($validatedData);
-
-        return redirect()->route('/dashboard/kriteria')->with('success', 'Sukses! Data kriteria Berhasil Disimpan');
     }
+
+    return redirect()->route('dashboard.kriteria')->with('success', 'Kriteria dan Sub Kriteria berhasil disimpan.');
+}
+
     public function delete_kriteria(Request $request)
     {
 
@@ -380,7 +440,7 @@ class AdminController extends Controller
 
         $kriteria->delete();
 
-        return redirect()->route('/dashboard/kriteria')->with('success', 'Sukses! Data kriteria Berhasil Dihapus');
+        return redirect()->route('dashboard.kriteria')->with('success', 'Sukses! Data kriteria Berhasil Dihapus');
     }
     public function edit_kriteria($id)
     {
@@ -404,7 +464,7 @@ class AdminController extends Controller
 
         $kriteria->update($validatedData);
 
-        return redirect()->route('/dashboard/kriteria')->with('success', 'Sukses! Data kriteria Berhasil Diupdate');
+        return redirect()->route('dashboard.kriteria')->with('success', 'Sukses! Data kriteria Berhasil Diupdate');
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////
@@ -437,7 +497,7 @@ class AdminController extends Controller
 
         SubKriteria::create($validatedData);
 
-        return redirect()->route('/dashboard/subkriteria')->with('success', 'Sukses! Data Sub Kriteria Berhasil Disimpan');
+        return redirect()->route('dashboard.subkriteria')->with('success', 'Sukses! Data Sub Kriteria Berhasil Disimpan');
     }
     public function delete_subkriteria(Request $request)
     {
@@ -450,7 +510,7 @@ class AdminController extends Controller
 
         $subkriteria->delete();
 
-        return redirect()->route('/dashboard/subkriteria')->with('success', 'Sukses! Data Sub Kriteria Berhasil Dihapus');
+        return redirect()->route('dashboard.subkriteria')->with('success', 'Sukses! Data Sub Kriteria Berhasil Dihapus');
     }
     public function edit_subkriteria($id)
     {
@@ -474,7 +534,7 @@ class AdminController extends Controller
 
         $subkriteria->update($validatedData);
 
-        return redirect()->route('/dashboard/subkriteria')->with('success', 'Sukses! Data Sub Kriteria Berhasil Diupdate');
+        return redirect()->route('dashboard.subkriteria')->with('success', 'Sukses! Data Sub Kriteria Berhasil Diupdate');
     }
 
     ////////////////////////////////////////////////////////////////////////////////////

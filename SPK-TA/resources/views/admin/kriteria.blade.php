@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('breadcrumb')
-    Jurusan
+    Kriteria
 @endsection
 
 @section('container')
@@ -10,10 +10,10 @@
             <div>
                 <h1 class="text-3xl text-slate-900 font-medium mb-1">Data Kriteria</h1>
                 <h5 class="text-base text-slate-700 mb-5">Dashboard/Data Kriteria</h5>
-                <a href="{{ route('/dashboard/kriteria/add') }}">
-                    <!-- <button
-                        class="bg-blue-600 text-white flex items-center px-3 py-2 rounded-lg hover:bg-blue-700">+ New Kriteria
-                    </button> -->
+                <a href="{{ route('dashboard.kriteria.add') }}">
+                    <button
+                        class="bg-blue-600 text-white flex items-center px-3 py-2 rounded-lg hover:bg-blue-700">+ Tambah Kriteria
+                    </button>
                 </a>
             </div>
         </div>
@@ -30,9 +30,9 @@
                         <th scope="col" class="px-6 py-5">
                             Nama Kriteria
                         </th>
-                        <!-- <th scope="col" class="px-6 py-5">
+                        <th scope="col" class="px-6 py-5">
                             Action
-                        </th> -->
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +47,7 @@
                         <td class="px-6 py-4 text-gray-900">
                             {{ $kt->nama_kriteria }}
                         </td>
-                        <!-- <td class="px-6 py-4">
+                        <td class="px-6 py-4">
                             <a href="{{ url('/dashboard/kriteria/edit/' . $kt->kriteria_id) }}">
                                 <button type="button" class="text-white tracking-wide focus:outline-none focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 bg-teal-500 hover:bg-teal-700 focus:ring-teal-900">Edit</button>
                             </a>
@@ -71,7 +71,7 @@
                                             </svg>
                                             <span class="sr-only">Close modal</span>
                                         </button>
-                                        <form action="{{ route('/dashboard/kriteria/delete') }}" method="POST"
+                                        <form action="{{ route('dashboard.kriteria.delete') }}" method="POST"
                                             class="p-6 text-center">
                                             @csrf
                                             <input type="hidden" name="kriteria_id" value="{{ $kt->kriteria_id }}">
@@ -95,7 +95,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </td> -->
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

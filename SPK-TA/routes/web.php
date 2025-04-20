@@ -49,26 +49,27 @@ Route::post('/dashboard/kelas/delete', [AdminController::class, 'delete_kelas'])
 Route::get('/dashboard/kelas/edit/{id}', [AdminController::class, 'edit_kelas'])->name('/dashboard/kelas/edit');
 Route::post('/dashboard/kelas/update', [AdminController::class, 'update_kelas'])->name('/dashboard/kelas/update');
 
-Route::get('/dashboard/jurusan', [AdminController::class, 'jurusan'])->name('/dashboard/jurusan');
-Route::get('/dashboard/jurusan/add', [AdminController::class, 'add_jurusan'])->name('/dashboard/jurusan/add');
-Route::post('/dashboard/jurusan/insert', [AdminController::class, 'insert_jurusan'])->name('/dashboard/jurusan/insert');
-Route::post('/dashboard/jurusan/delete', [AdminController::class, 'delete_jurusan'])->name('/dashboard/jurusan/delete');
-Route::get('/dashboard/jurusan/edit/{id}', [AdminController::class, 'edit_jurusan'])->name('/dashboard/jurusan/edit');
-Route::post('/dashboard/jurusan/update', [AdminController::class, 'update_jurusan'])->name('/dashboard/jurusan/update');
+Route::get('/dashboard/jurusan', [AdminController::class, 'jurusan'])->name('dashboard.jurusan');
+Route::post('/dashboard/jurusan/import', [AdminController::class, 'importJurusan'])->name('dashboard.jurusan.import');
+Route::get('/dashboard/jurusan/add', [AdminController::class, 'add_jurusan'])->name('dashboard.jurusan.add');
+Route::post('/dashboard/jurusan/insert', [AdminController::class, 'insert_jurusan'])->name('dashboard.jurusan.insert');
+Route::post('/dashboard/jurusan/delete', [AdminController::class, 'delete_jurusan'])->name('dashboard.jurusan.delete');
+Route::get('/dashboard/jurusan/edit/{id}', [AdminController::class, 'edit_jurusan'])->name('dashboard.jurusan.edit');
+Route::post('/dashboard/jurusan/update', [AdminController::class, 'update_jurusan'])->name('dashboard.jurusan.update');
 
-Route::get('/dashboard/kriteria', [AdminController::class, 'kriteria'])->name('/dashboard/kriteria');
-Route::get('/dashboard/kriteria/add', [AdminController::class, 'add_kriteria'])->name('/dashboard/kriteria/add');
-Route::post('/dashboard/kriteria/insert', [AdminController::class, 'insert_kriteria'])->name('/dashboard/kriteria/insert');
-Route::post('/dashboard/kriteria/delete', [AdminController::class, 'delete_kriteria'])->name('/dashboard/kriteria/delete');
-Route::get('/dashboard/kriteria/edit/{id}', [AdminController::class, 'edit_kriteria'])->name('/dashboard/kriteria/edit');
-Route::post('/dashboard/kriteria/update', [AdminController::class, 'update_kriteria'])->name('/dashboard/kriteria/update');
+Route::get('/dashboard/kriteria', [AdminController::class, 'kriteria'])->name('dashboard.kriteria');
+Route::get('/dashboard/kriteria/add', [AdminController::class, 'add_kriteria'])->name('dashboard.kriteria.add');
+Route::post('/dashboard/kriteria/insert', [AdminController::class, 'insert_kriteria'])->name('dashboard.kriteria.insert');
+Route::post('/dashboard/kriteria/delete', [AdminController::class, 'delete_kriteria'])->name('dashboard.kriteria.delete');
+Route::get('/dashboard/kriteria/edit/{id}', [AdminController::class, 'edit_kriteria'])->name('dashboard.kriteria.edit');
+Route::post('/dashboard/kriteria/update', [AdminController::class, 'update_kriteria'])->name('dashboard.kriteria.update');
 
-Route::get('/dashboard/subkriteria', [AdminController::class, 'subkriteria'])->name('/dashboard/subkriteria');
-Route::get('/dashboard/subkriteria/add', [AdminController::class, 'add_subkriteria'])->name('/dashboard/subkriteria/add');
-Route::post('/dashboard/subkriteria/insert', [AdminController::class, 'insert_subkriteria'])->name('/dashboard/subkriteria/insert');
-Route::post('/dashboard/subkriteria/delete', [AdminController::class, 'delete_subkriteria'])->name('/dashboard/subkriteria/delete');
-Route::get('/dashboard/subkriteria/edit/{id}', [AdminController::class, 'edit_subkriteria'])->name('/dashboard/subkriteria/edit');
-Route::post('/dashboard/subkriteria/update', [AdminController::class, 'update_subkriteria'])->name('/dashboard/subkriteria/update');
+Route::get('/dashboard/subkriteria', [AdminController::class, 'subkriteria'])->name('dashboard.subkriteria');
+Route::get('/dashboard/subkriteria/add', [AdminController::class, 'add_subkriteria'])->name('dashboard.subkriteria.add');
+Route::post('/dashboard/subkriteria/insert', [AdminController::class, 'insert_subkriteria'])->name('dashboard.subkriteria.insert');
+Route::post('/dashboard/subkriteria/delete', [AdminController::class, 'delete_subkriteria'])->name('dashboard.subkriteria.delete');
+Route::get('/dashboard/subkriteria/edit/{id}', [AdminController::class, 'edit_subkriteria'])->name('dashboard.subkriteria.edit');
+Route::post('/dashboard/subkriteria/update', [AdminController::class, 'update_subkriteria'])->name('dashboard.subkriteria.update');
 
 Route::get('/dashboard/perhitungan', [AdminController::class, 'perhitungan'])->name('/dashboard/perhitungan');
 Route::post('/dashboard/alternatif', [AdminController::class, 'alternatif'])->name('/dashboard/alternatif');

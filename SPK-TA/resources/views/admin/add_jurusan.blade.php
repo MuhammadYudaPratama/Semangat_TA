@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="relative overflow-x-auto px-1 sm:rounded-lg">
-            <form action="{{ route('/dashboard/jurusan/insert') }}" method="POST">
+            <form action="{{ route('dashboard.jurusan.insert') }}" method="POST">
                 @csrf
                 <div class="mb-6">
                     <label for="kode_jurusan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kode Jurusan</label>

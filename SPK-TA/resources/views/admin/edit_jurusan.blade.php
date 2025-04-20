@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="relative overflow-x-auto px-1 sm:rounded-lg">
-            <form action="{{ route('/dashboard/jurusan/update') }}" method="POST">
+            <form action="{{ route('dashboard.jurusan.update') }}" method="POST">
                 @csrf
                 <input type="hidden" name="jurusan_id" value="{{ $jurusan->jurusan_id }}">
                 <div class="mb-6">

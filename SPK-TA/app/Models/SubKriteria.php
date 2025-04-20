@@ -25,4 +25,10 @@ class SubKriteria extends Model
         'bobot',
     ];
 
+    public function kriteria()
+    {
+    return $this->belongsTo(Kriteria::class, 'kriteria_id');
+    }
+
+
 }

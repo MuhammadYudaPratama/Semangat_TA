@@ -22,6 +22,10 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+        Schema::table('sub_kriterias', function (Blueprint $table) {
+            $table->foreignId('kriteria_id')->constrained('kriterias')->onDelete('cascade');
+        });
+        
     }
 
     /**
